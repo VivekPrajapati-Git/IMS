@@ -1,0 +1,1 @@
+A Inventory System for books store stock maintenance is made.
