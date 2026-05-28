@@ -1,6 +1,10 @@
+import SignUp from "./Pages/signUp";
+
 function App() {
   return (
-    <> </>
+    <> 
+    <SignUp />
+    </>
   )
 }
 
