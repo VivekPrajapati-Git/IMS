@@ -1,11 +1,26 @@
 import React from 'react';
+import validator from 'validator'
 import "../css/signUp.css";
 
 export default function SignUp(){
+    const [email,setEmail] = React.useState("")
+    const [isValidEmail , setIsValidEmail]  = React.useState(false)
+
+    const [phoneNumber , setPhoneNumber] = React.useState("")
+    const [isValidNumber, setIsValidNumber] = React.useState(false)
+
+    function EmailChecker(value){
+        setEmail(value)  
+        setIsValidEmail(validator.isEmail(value))
+    }
+
+    function PhoneNumberChecker(value){
+        setPhoneNumber(value)
+        setIsValidNumber(validator.isMobilePhone(value,"en-IN"))
+    }
 
     function handleSubmit(formData){
-        const data = Object.entries(formData)
-        console.log(data)
+        const data = Object.fromEntries(formData)
     }
 
     return (
@@ -14,12 +29,50 @@ export default function SignUp(){
             <div className="child">
                 <form action={handleSubmit}>
                     <h1>Register User</h1>
-                    <input type="text" name="fullName" placeholder='Enter Your Full Name' required /><br />
-                    <input type='text' name="userName" placeholder='Enter UserName' required /> <br />
-                    <input type="email" name="Email" placeholder='Enter Your Email' required /> <br />    
-                    <input type="password" name="password" placeholder='Enter Your Password' required /> <br />
-                    <input type="PhoneNumber" name="phoneNumber" placeholder='Enter Your Phone Number' required /> <br />
-                    <input type="text" name="orgName" placeholder='Enter Organization Name' required /> <br />
+                    <input 
+                        type="text" 
+                        name="fullName" 
+                        placeholder='Enter Your Full Name' 
+                        required
+                    /><br />
+                    <input 
+                        type='text' 
+                        name="userName" 
+                        placeholder='Enter UserName' 
+                        required 
+                    /> <br />
+                    <input 
+                        type="email" 
+                        name="Email" 
+                        placeholder='Enter Your Email' 
+                        required 
+                        onChange={(e)=>{EmailChecker(e.target.value)}}
+                        style={{
+                            border : email === "" ? "none" : isValidEmail ? "2px solid green" : "2px solid red"
+                        }}  
+                    /> <br />    
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder='Enter Your Password' 
+                        required 
+                    /> <br />
+                    <input 
+                        type="PhoneNumber" 
+                        name="phoneNumber" 
+                        placeholder='Enter Your Phone Number' 
+                        required 
+                        onChange={(e)=>{PhoneNumberChecker(e.target.value)}}
+                        style={{
+                            border : phoneNumber === "" ? "none" : isValidNumber ? "2px solid green" : "2px solid red"
+                        }}
+                    /> <br />
+                    <input 
+                        type="text" 
+                        name="orgName" 
+                        placeholder='Enter Organization Name' 
+                        required 
+                    /> <br />
                     <button>Register</button>
                 </form> 
             </div>
