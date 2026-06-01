@@ -1,0 +1,22 @@
+.login{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    width: 400px;
+    max-width: 90%;
+    border-radius: 10px;
+    opacity: 0.8;
+}
+
+.signuptext{
+    text-align: center;
+    margin-top: 15px;
+    /* background-color: black; */
+    height: 50px;
+    font-size: 25px;
+    margin-top: -20px;    
+    margin-left: -5px;
+}
+
+h6{
+    color: white;
+}

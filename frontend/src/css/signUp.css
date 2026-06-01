@@ -54,6 +54,7 @@ button{
     cursor: pointer;
     display: block;
     margin: 35px auto;
+    font-weight: bold;
 }
 
 h6{

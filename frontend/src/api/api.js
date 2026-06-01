@@ -9,3 +9,7 @@ const api = axios.create({
 export const SignUpDataPost = async (Data) => {
     console.log(Data)
 }
+
+export const LoginDataPost = async (Data) =>{
+    console.log(Data)
+}
