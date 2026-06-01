@@ -1,13 +1,19 @@
 import React from 'react';
 import validator from 'validator'
+// import { SignUpDataPost } from '../api/api';
 import "../css/signUp.css";
 
 export default function SignUp(){
+    // Setting Variable for validation checking for email
     const [email,setEmail] = React.useState("")
     const [isValidEmail , setIsValidEmail]  = React.useState(false)
 
+    // Setting variable for validation checking for phone number
     const [phoneNumber , setPhoneNumber] = React.useState("")
     const [isValidNumber, setIsValidNumber] = React.useState(false)
+
+    const [password,setPassword] = React.useState("")
+    const [isValidPassword, setIsValidPassword] = React.useState(false)
 
     function EmailChecker(value){
         setEmail(value)  
@@ -19,8 +25,14 @@ export default function SignUp(){
         setIsValidNumber(validator.isMobilePhone(value,"en-IN"))
     }
 
+    function PasswordChecker(value){
+        setPassword(value)
+        setIsValidPassword(password.length >= 8 && true)
+    }
+
     function handleSubmit(formData){
         const data = Object.fromEntries(formData)
+        // SignUpDataPost(data)
     }
 
     return (
@@ -56,7 +68,13 @@ export default function SignUp(){
                         name="password" 
                         placeholder='Enter Your Password' 
                         required 
-                    /> <br />
+                        onChange={(e)=>{PasswordChecker(e.target.value)}}
+                        style={{
+                            border : password.length === 0 ? "none" : isValidPassword ? "2px solid green" : "2px solid red"
+                        }}
+                    /> 
+                    { password.length === 0 ? "" : isValidPassword ? "" : <h6>Password should be of atleast 8 characters</h6>} 
+                    <br />
                     <input 
                         type="PhoneNumber" 
                         name="phoneNumber" 
@@ -66,7 +84,8 @@ export default function SignUp(){
                         style={{
                             border : phoneNumber === "" ? "none" : isValidNumber ? "2px solid green" : "2px solid red"
                         }}
-                    /> <br />
+                    />
+                    <br />
                     <input 
                         type="text" 
                         name="orgName" 
