@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-BaseURL = import.meta.env.BaseURL
+const BASE_URL = import.meta.env.BASE_URL || "http://localhost:3000/"
 
 const api = axios.create({
-    baseURL : BaseURL
-})
+    baseURL : BASE_URL,
+});
 
-export const SignUpDataPost = async ({Data}) => {
-    const response = await api.post('/auth/login')
+export const SignUpDataPost = async (Data) => {
+    console.log(Data)
 }

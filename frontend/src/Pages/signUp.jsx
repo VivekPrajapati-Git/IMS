@@ -1,6 +1,6 @@
 import React from 'react';
 import validator from 'validator'
-// import { SignUpDataPost } from '../api/api';
+import { SignUpDataPost } from '../api/api';
 import "../css/signUp.css";
 
 export default function SignUp(){
@@ -32,7 +32,7 @@ export default function SignUp(){
 
     function handleSubmit(formData){
         const data = Object.fromEntries(formData)
-        // SignUpDataPost(data)
+        SignUpDataPost(data)
     }
 
     return (
@@ -92,7 +92,7 @@ export default function SignUp(){
                         placeholder='Enter Organization Name' 
                         required 
                     /> <br />
-                    <button>Register</button>
+                    <button disabled={isValidEmail ? false : isValidNumber ? false : isValidPassword ? false : true}>Register</button>
                 </form> 
             </div>
         </div>
