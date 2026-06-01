@@ -86,12 +86,6 @@ export default function SignUp(){
                         }}
                     />
                     <br />
-                    <input 
-                        type="text" 
-                        name="orgName" 
-                        placeholder='Enter Organization Name' 
-                        required 
-                    /> <br />
                     <button disabled={isValidEmail ? false : isValidNumber ? false : isValidPassword ? false : true}>Register</button>
                 </form> 
             </div>
