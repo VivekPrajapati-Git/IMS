@@ -1,11 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../css/Login.css'
+import { isAdmin, LoginDataPost } from "../api/api";
+import AdminDashboard from '../Pages/Admin/AdminDashboard'
+import UserDashboard from "../Pages/User/UserDashboard"
 
 export default function Login(){
-    function handleSubmit(formData){
+    const navigate = useNavigate();
+    async function handleSubmit(formData){
         const data = Object.fromEntries(formData)
-        console.log(data)
+        await LoginDataPost(data)
+
+        if (isAdmin()){
+            navigate("/admin")
+        } else {
+            navigate("/user")
+        }
     }
 
     return(

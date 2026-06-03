@@ -1,6 +1,8 @@
 import React from 'react';
 import validator from 'validator'
 import { SignUpDataPost } from '../api/api';
+import { useNavigate } from 'react-router-dom';
+import Login from "../Pages/Login"
 import "../css/signUp.css";
 
 export default function SignUp(){
@@ -32,7 +34,10 @@ export default function SignUp(){
 
     function handleSubmit(formData){
         const data = Object.fromEntries(formData)
-        SignUpDataPost(data)
+        const response = SignUpDataPost(data)
+        if (response) {
+            useNavigate(< Login />)
+        }
     }
 
     return (
@@ -40,7 +45,7 @@ export default function SignUp(){
         <div className="parent">
             <div className="child">
                 <form action={handleSubmit}>
-                    <h1>Register User</h1>
+                    <h1>Create User</h1>
                     <input 
                         type="text" 
                         name="fullName" 
