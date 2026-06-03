@@ -3,6 +3,10 @@ const app = express();
 const debug = require('debug')('app')
 const cors = require('cors')
 
+const db = require('./connections/supabase_conn')
+const schema = require('./connections/mongo_conn')
+const cloud = require('./connections/cloud_conn')
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
