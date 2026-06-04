@@ -12,19 +12,24 @@ export const SignUpDataPost = async (data) => {
 }
 
 export const LoginDataPost = async (Data) =>{
-    const response = await api.post('/auth/login',{userName : Data.username , password : Data.password})
-    const {message,role,token} = response.data
-
-    if(response.data.token){
-        localStorage.setItem('role',role)
-        localStorage.setItem('token',token)
-        localStorage.setItem('username',Data.username)
+    try {
+        const response = await api.post('/auth/login',{userName : Data.username , password : Data.password})
+        const {message,role,token} = response.data
+        
+        if(response.data.token){
+            localStorage.setItem('role',role)
+            localStorage.setItem('token',token)
+            localStorage.setItem('username',Data.username)
+        }
+    } catch (err){
+        throw new Error(
+            err.response?.data?.message  ||
+            "Login Falied ! Try Again."
+        )
     }
-
 }
 
 export const isAdmin = ()=>{
     const role = localStorage.getItem('role')
-    console.log(role)
     return role.toLowerCase() === 'admin';
 }

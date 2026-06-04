@@ -1,25 +1,34 @@
+import '../css/Login.css'
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import '../css/Login.css'
 import { isAdmin, LoginDataPost } from "../api/api";
 import AdminDashboard from '../Pages/Admin/AdminDashboard'
 import UserDashboard from "../Pages/User/UserDashboard"
+import ErrorToast from '../Components/Error';
 
 export default function Login(){
     const navigate = useNavigate();
-    async function handleSubmit(formData){
-        const data = Object.fromEntries(formData)
-        await LoginDataPost(data)
+    const [error,setError] = React.useState("")
 
-        if (isAdmin()){
-            navigate("/admin")
-        } else {
-            navigate("/user")
+    async function handleSubmit(formData){
+        try {
+            setError("")
+            const data = Object.fromEntries(formData)
+            await LoginDataPost(data)
+
+            if (isAdmin()){
+                navigate("/admin")
+            } else {
+                navigate("/user")
+            }
+        } catch (error){
+            setError(error.message)
         }
     }
 
     return(
         <>
+        {error.length === 0 ? "" : <ErrorToast message={error} onClose={()=> setError("")} />}
         <div className="parent">
             <div className="login">
                 <h1>Login</h1>
