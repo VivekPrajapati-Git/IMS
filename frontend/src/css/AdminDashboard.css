@@ -1,0 +1,13 @@
+.outer{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+}
+
+.main{
+    flex: 1;
+    padding: 20px;
+}
