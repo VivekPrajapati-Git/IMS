@@ -13,6 +13,7 @@ app.use(cors());
 
 app.use('/auth',require('./routes/auth'))
 app.use('/upload',require('./routes/image_upload'))
+app.use('/stock',require('./routes/stock'))
 
 app.listen(3000,(err)=>{
     if (err){
