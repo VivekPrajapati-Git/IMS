@@ -22,9 +22,7 @@ router.get('/get_stock', async(req,res)=>{
         return res.status(401).send("Data Doesn't Exist!")
     }
 
-    return res.json({
-        data : data,
-    })
+    return res.send(data)
 })
 
 module.exports = router

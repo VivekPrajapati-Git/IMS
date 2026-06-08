@@ -29,6 +29,18 @@ export const LoginDataPost = async (Data) =>{
     }
 }
 
+export const GetStock = async() =>{
+    try {
+        const response = await api.get('/stock/get_stock')
+        return response.data
+    } catch(error){
+        throw new Error(
+            "Data Not Found"
+        )
+    }
+}
+
+
 export const isAdmin = ()=>{
     const role = localStorage.getItem('role')
     return role.toLowerCase() === 'admin';
