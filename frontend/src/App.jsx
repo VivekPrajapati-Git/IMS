@@ -7,6 +7,7 @@ import UpdateStock from "./Pages/Admin/UpdateStock";
 import Users from "./Pages/Admin/Users";
 import SalesLog from "./Pages/Admin/SaleLog";
 import {BrowserRouter,Route, Routes} from 'react-router-dom'
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   return (
@@ -15,12 +16,16 @@ function App() {
     <Routes>
       <Route path='/singup' element={<SignUp />} />
       <Route path="/" element={<Login />} />
-      <Route path = "/admin" element = {<AdminDashboard />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path = "/admin" element = {<AdminDashboard />} />
+        <Route path = "/addstock" element = {<AddStock />} />
+        <Route path = "/updatestock" element = {<UpdateStock />} />
+        <Route path = '/users' element = {<Users />} />
+        <Route path = '/saleslog' element = {<SalesLog />} />
+      </Route>
+
       <Route path = "/user" element = {<UserDashboard />} />
-      <Route path = "/addstock" element = {<AddStock />} />
-      <Route path = "/updatestock" element = {<UpdateStock />} />
-      <Route path = '/users' element = {<Users />} />
-      <Route path = '/saleslog' element = {<SalesLog />} /> 
     </Routes>
     </BrowserRouter>
     </>

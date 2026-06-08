@@ -31,7 +31,13 @@ export const LoginDataPost = async (Data) =>{
 
 export const GetStock = async() =>{
     try {
-        const response = await api.get('/stock/get_stock')
+        const token = localStorage.getItem("token")
+
+        const response = await api.get('/stock/get_stock',{
+            headers : {
+                Authorization : `Bearer ${token}`
+            }
+        })
         return response.data
     } catch(error){
         throw new Error(
