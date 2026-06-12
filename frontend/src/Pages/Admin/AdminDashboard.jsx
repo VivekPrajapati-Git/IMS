@@ -17,30 +17,6 @@ export default function AdminDashboard(){
     const [quantityFilter , setQuantityFilter] = React.useState("")
     const [priceFilter, setPriceFilter] = React.useState("")
 
-    const [navbarList , setNavbarList] = React.useState([
-        {
-            name:"Inventory",
-            route: "/admin"
-        },         
-        {
-            name:"Add Stock",
-            route: "/addstock"
-        },
-        {
-            name:"Update Stock",
-            route: "/updatestock"
-        },
-        {
-            name:"Users",
-            route: "/user"
-        },
-
-        {
-            name:"sales",
-            route: "/saleslog"
-        },
-    ])
-    
     // For Fetching the stock data
     useEffect(()=>{
         async function fetchStock() {
@@ -77,11 +53,8 @@ export default function AdminDashboard(){
 
     return (
         <>
-        <div className="outer">
-            <Navbar 
-                values = {navbarList}
-            />
-            <div className="main">
+        {/* <div className="outer"> */}
+            {/* <div className="main"> */}
                 <h2>List of Available Stock</h2>
                 <div className="search">
                     <input 
@@ -134,8 +107,8 @@ export default function AdminDashboard(){
                         onClick={()=>setPage(prev=>prev+1)}
                     >Next</button>
                 </div>
-            </div>
-        </div>
+            {/* </div> */}
+        {/* </div> */}
         </>
     )
 }
